@@ -35,10 +35,12 @@
             border-radius: 15px;
             padding: 30px;
             box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
         }
 
         .player-turn {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -50,20 +52,20 @@
 
         .board {
             display: grid;
-            grid-template-columns: repeat(3, 100px);
+            grid-template-columns: repeat(3, 1fr);
             grid-gap: 10px;
             justify-content: center;
         }
 
         .cell {
-            width: 100px;
-            height: 100px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
             background: #ffffff;
             border: 3px solid #00d0ff;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 4rem;
+            font-size: 2.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
             border-radius: 10px;
@@ -129,11 +131,13 @@
             text-align: center;
             z-index: 1000;
             display: none;
+            width: 80%;
+            max-width: 400px;
         }
 
         .credit {
             margin-top: 20px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #ffffff;
             text-align: center; 
         }
@@ -146,12 +150,53 @@
         .credit a:hover {
             text-decoration: underline;
         }
+
+        @media (min-width: 768px) {
+            .player-turn {
+                font-size: 2rem;
+            }
+
+            .cell {
+                font-size: 3.5rem;
+            }
+
+            .reset-btn {
+                font-size: 1.2rem;
+            }
+
+            .winner-message {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .game-container {
+                padding: 40px;
+            }
+
+            .player-turn {
+                font-size: 2.2rem;
+            }
+
+            .cell {
+                font-size: 4rem;
+            }
+
+            .reset-btn {
+                font-size: 1.4rem;
+                padding: 12px 24px;
+            }
+
+            .winner-message {
+                font-size: 1.4rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="game-container">
         <div class="player-turn">Player <span id="currentPlayer">X</span>'s Turn</div>
-        <div class="board" id="board"></div>
+        <div class="board" id="board"></div><br>
         <button class="reset-btn" onclick="resetGame()">RESET</button>
     </div>
 
@@ -220,7 +265,6 @@
 
         function switchPlayer() {
             currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
-            document.getElementById('playerInfo').textContent = `Player ${currentPlayer.toUpperCase()}'s turn`;
             document.getElementById('currentPlayer').textContent = currentPlayer.toUpperCase();
         }
 
@@ -251,7 +295,7 @@
             xMoves = [];
             oMoves = [];
 
-            document.querySelector('.player-turn').innerHTML = "Player <span id='currentPlayer'>X</span>'s Turn";
+            document.getElementById('currentPlayer').textContent = 'X';
             document.getElementById('winnerMessage').style.display = 'none';
             createBoard();
         }
