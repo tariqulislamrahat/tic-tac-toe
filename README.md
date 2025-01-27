@@ -2,7 +2,7 @@
 
 This is a advance implementation of the classic tic-tac-toe game built using HTML, CSS, and JavaScript.
 
-You can play the live demo [here](https://tariqulislamrahat.github.io/1).
+You can play the live demo [here](https://tariqulislamrahat.github.io/xyz).
 
 ## How to Play
 
